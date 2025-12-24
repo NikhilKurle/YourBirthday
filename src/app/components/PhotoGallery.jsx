@@ -7,13 +7,14 @@ import { EffectCube, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/effect-cube'
 import 'swiper/css/pagination'
+import Image from "next/image"
 
 export default function PhotoGallery({ onNext }) {
 
     const photos = [
-  { id: 1, src: "/YourBirthday/images/3.jpg" },
-  { id: 2, src: "/YourBirthday/images/dog.png" },
-]
+        { id: 1, src: "/YourBirthday/images/3.jpg" },
+        { id: 2, src: "/YourBirthday/images/dog.png" },
+    ]
 
     return (
         <motion.div
@@ -41,7 +42,7 @@ export default function PhotoGallery({ onNext }) {
                 </motion.div>
 
                 <h1 className="text-4xl md:text-6xl py-1 md:py-2 font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 mb-6">
-                Moments with You 
+                    Moments with You
                 </h1>
                 <p className="text-xl text-purple-300">Beautiful moments with You 📸</p>
             </motion.div>
@@ -63,11 +64,14 @@ export default function PhotoGallery({ onNext }) {
                 >
                     {photos.map((photo, index) => (
                         <SwiperSlide key={photo.id}>
-                            <img
-                                src={photo.src || "/placeholder.svg"}
-                                alt={`Memory ${index + 1}`}
-                                className="w-full h-full object-cover rounded-xl"
-                            />
+                            <div className="relative w-full h-full">
+                                <Image
+                                    src={photo.src}
+                                    alt={`Memory ${index + 1}`}
+                                    fill
+                                    className="object-cover rounded-xl"
+                                />
+                            </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>
